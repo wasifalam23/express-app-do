@@ -2,8 +2,11 @@ const fs = require('fs');
 const { promisify } = require('util');
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
 
 const app = express();
+
+app.use(morgan('dev'));
 
 app.get('/api/quotes', async (req, res, next) => {
   const quotes = await promisify(fs.readFile)(
